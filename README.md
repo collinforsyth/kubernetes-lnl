@@ -12,7 +12,7 @@ find ./ -name "*.yaml" -delete
 
 Now let's set up our environment:
 ```
-kubectx arn:aws:eks:us-east-1:966775768564:cluster/dev-ue1-eks-01
+kubectx <dev-ctx>
 ```
 
 Create a custom namespace for us to play around in
