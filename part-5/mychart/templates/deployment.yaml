@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ required "requires Values.app to be set" .Values.replicas }}
+        app: {{ required "requires Values.app to be set" .Values.app }}
     spec:
       containers:
         - name: foo
@@ -23,3 +23,10 @@ spec:
             - containerPort: 8080
           securityContext:
             readOnlyRootFilesystem: true
+          env:
+          # Here's something that's a bit more nuanced
+          {{- range $k, $v := .Values.env }}
+            - name: {{ $k }}
+              value: {{ $v }}
+          {{ end }}
+
