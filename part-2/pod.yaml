@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: foo
+      image: 966775768564.dkr.ecr.us-east-1.amazonaws.com/foo-self-destruct:latest
+      ports:
+        - containerPort: 8080
+      securityContext:
+        readOnlyRootFilesystem: true

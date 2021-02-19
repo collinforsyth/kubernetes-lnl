@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+# This is how a unique Kubernetes resource can be made
+metadata:
+  name: bar
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bar
+  template:
+    metadata:
+      labels:
+        app: bar
+    spec:
+      containers:
+        - name: bar
+          image: 966775768564.dkr.ecr.us-east-1.amazonaws.com/bar:latest
+          ports:
+            - containerPort: 8080
+          securityContext:
+            readOnlyRootFilesystem: true
+          env:
+            - name: FOO_ADDRESS
+              value: "http://foo.collin-test.svc.cluster.local:8080/ping"

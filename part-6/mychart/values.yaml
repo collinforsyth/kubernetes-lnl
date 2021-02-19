@@ -1,0 +1,3 @@
+---
+# Default values for mychart.
+replicas: 2

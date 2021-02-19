@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+# This is how a unique Kubernetes resource can be made
+metadata:
+  name: {{ required "requires Values.app to be set" .Values.app }}
+  labels:
+    app: {{ required "requires Values.app to be set" .Values.app }}
+spec:
+  replicas: {{ required "requires Values.replicas to be set" .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ required "requires Values.app to be set" .Values.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ required "requires Values.app to be set" .Values.replicas }}
+    spec:
+      containers:
+        - name: foo
+          image: {{ required "requires Values.image to be set" .Values.image }}
+          ports:
+            - containerPort: 8080
+          securityContext:
+            readOnlyRootFilesystem: true
